@@ -1,9 +1,11 @@
 const inquirer = require('inquirer');
+const generateIndex = require('./generateIndex')
 const fs = require('fs');
+const teamArray = [];
 
-
-const promptUser = () => {
-    return inquirer.prompt([
+const promptUser = employeeInfo => {
+    return inquirer
+    .prompt([
         {
             type: 'input',
             name: 'name',
@@ -92,15 +94,28 @@ const promptUser = () => {
                     return false
                 }
             }
+        },
+        {
+            type: 'confirm',
+            name: 'addEmployee',
+            message: 'Would you like to add another employee?',
+        },
+    ])
+    .then(employeeInfo => {
+        teamArray.push(employeeInfo);
+        if(employeeInfo.addEmployee){
+            promptUser(teamArray)
+        } else {
+            return teamArray;
         }
-    ]);
+    });
 }
 
 
 // Function to write HTML file
 function writeToFile(data) {
     return new Promise((resolve, reject) => {
-        fs.writeFile('./index.html', generateIndex(data), err => {
+        fs.writeFile('./dist/index.html', generateIndex(data), err => {
             if (err) {
                 reject(err);
                 return;

@@ -1,4 +1,11 @@
-function generateIndex(data) {
+function generateCard (data) {
+
+    const employeeArray = [];
+}
+
+
+
+function generatePage(data) {
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
