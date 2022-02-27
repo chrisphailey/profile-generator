@@ -1,9 +1,11 @@
 const inquirer = require('inquirer');
-const generateIndex = require('./generateIndex')
 const fs = require('fs');
-const teamArray = [];
+const generateCard = require('./utils/generateIndex.js');
 
-const promptUser = employeeInfo => {
+const promptUser = (teamArray) => {
+    if(!teamArray){
+        teamArray = []
+    }
     return inquirer
     .prompt([
         {
@@ -18,6 +20,7 @@ const promptUser = employeeInfo => {
                   return false;
                 }
               }
+
         },
         {
             type: 'input',
@@ -104,7 +107,8 @@ const promptUser = employeeInfo => {
     .then(employeeInfo => {
         teamArray.push(employeeInfo);
         if(employeeInfo.addEmployee){
-            promptUser(teamArray)
+           return promptUser(teamArray)
+            console.log(employeeInfo);
         } else {
             return teamArray;
         }
@@ -113,28 +117,25 @@ const promptUser = employeeInfo => {
 
 
 // Function to write HTML file
-function writeToFile(data) {
-    return new Promise((resolve, reject) => {
-        fs.writeFile('./dist/index.html', generateIndex(data), err => {
+writeToFile = (data) => {
+        fs.writeFile('./dist/index.html', (data), err => {
             if (err) {
-                reject(err);
-                return;
+                console.log(err);
             }
-
-            resolve({
-                ok: true,
-                message: 'File created!'
-            });
         });
-    })
 }
 
 // function to initialize app
 function init() {
     promptUser()
-    // .then(data => {
-    //     return writeToFile(data);
-    // })
+    .then((teamArray) => {
+        return generateCard(teamArray);
+    }).then(data => {
+        return writeToFile(data)
+    }).catch((err) => {
+        console.log(err)
+    }) 
+   
 }
 
 init();
