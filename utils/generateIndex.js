@@ -1,38 +1,42 @@
 const generateObjects = require('./generateObjects')
 
 const generateManager = function(manager){
-    return `<div id="manager">
-    <h3>${manager.name}</h3>
-    <div class="info">
-        <p>${manager.id}</p>
-        <p>Email: ${manager.email}</p>
-        <p>Office number: ${manager.number}</p>
+    return `<div class="col-sm-3 card z-depth-4 display-4 border border-dark rounded" style="width: 18rem;">
+    <div class="card-header display-4">
+        ${manager.name}
     </div>
-    </div>`
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Employee ID: ${manager.id}</li>
+      <li class="list-group-item">Email: ${manager.email}</li>
+      <li class="list-group-item">Office number: ${manager.number}</li>
+    </ul>
+  </div>`
     };
     
     const generateEngineer = function(engineer){
-    return `<div id="engineer">
-    <h3>${engineer.name}</h3>
-    <div class="info">
-        <p>${engineer.id}</p>
-        <p>Email: ${engineer.email}</p>
-        <p>GitHub:<a href="github.com/${engineer.github}">${engineer.github}</a>
-        </p>
+    return `              <div class="col-sm-3 card z-depth-4 display-4 border border-dark rounded" style="width: 18rem;">
+    <div class="card-header display-4">
+        ${engineer.name}
     </div>
-    </div>`
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Employee ID: ${engineer.id}</li>
+      <li class="list-group-item">Email: ${engineer.email}</li>
+      <li class="list-group-item">GitHub:<a href="https://github.com/${engineer.github}">${engineer.github}</a></li>
+    </ul>
+  </div>`
     };
     
     const generateIntern = function(intern){
-    return `<div id="engineer">
-    <h3>${intern.name}</h3>
-    <div class="info">
-        <p>${intern.id}</p>
-        <p>Email: ${intern.email}</p>
-        <p>GitHub:<a href="github.com/${intern.github}">${intern.github}</a>
-        </p>
+    return `              <div class="col-sm-3 card z-depth-4 display-4 border border-dark rounded" style="width: 18rem;">
+    <div class="card-header display-4">
+        ${intern.name}
     </div>
-    </div>`
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Employee ID: ${intern.id}</li>
+      <li class="list-group-item">Email: ${intern.email}</li>
+      <li class="list-group-item">School: ${intern.school}</li>
+    </ul>
+  </div>`
     };
     
     
@@ -44,16 +48,19 @@ const generateManager = function(manager){
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+            <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
             <title>Team Profile</title>
         </head>
         <body>
-            <div id="jumbotron">
-                <h1>My Team</h1>
+        <div class="jumbotron bg-warning">
+            <h1 class="display-12 text-center">My Team</h1>
+        </div>
+        <div class="container">
+            <div class="cards row d-flex justify-content-around" style="height: 100px">
+                    ${pageArray}
             </div>
-            <div class="cards">
-                ${pageArray}
-            </div>
-            
+           </div> 
         </body>
         </html>`
     }
@@ -82,7 +89,6 @@ function generateCard (data) {
 }
 const pageArray = teamArray.join('');
 const createHTML = generatePage(pageArray);
-console.log(createHTML)
 return createHTML; 
 }
 
