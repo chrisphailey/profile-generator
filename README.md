@@ -14,3 +14,4 @@ Use the following instructions to run the application:
 ![team-profile-screenshot](./images/profile-screenshot.png)
 
 ## URL to Walkthrough Video
+https://drive.google.com/file/d/1NMVgrsurDEWJHEki8aU4hIHw4rwKf0RU/view
