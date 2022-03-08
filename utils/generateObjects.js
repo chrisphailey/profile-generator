@@ -8,7 +8,7 @@ return `<div id="manager">
 <h3>${manager.name}</h3>
 <div class="info">
     <p>${manager.id}</p>
-    <p>Email: ${manager.email}</p>
+    <a href="mailto:${manager.email}">${manager.email}</a>
     <p>Office number: ${manager.number}</p>
 </div>
 </div>`
@@ -19,7 +19,7 @@ return `<div id="engineer">
 <h3>${engineer.name}</h3>
 <div class="info">
     <p>${engineer.id}</p>
-    <p>Email: ${engineer.email}</p>
+    <a href="mailto:${engineer.email}">${engineer.email}</a>
     <p>GitHub:<a href="github.com/${engineer.github}">${engineer.github}</a>
     </p>
 </div>
@@ -31,7 +31,7 @@ return `<div id="engineer">
 <h3>${intern.name}</h3>
 <div class="info">
     <p>${intern.id}</p>
-    <p>Email: ${intern.email}</p>
+    <a href="mailto:${intern.email}">${intern.email}</a>
     <p>GitHub:<a href="github.com/${intern.github}">${intern.github}</a>
     </p>
 </div>
